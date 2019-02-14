@@ -50,6 +50,11 @@ public class OVRGrabber : MonoBehaviour
     [SerializeField]
     protected Transform m_parentTransform;
 
+    public OVRInput.Controller GetController()
+    {
+        return m_controller;
+    }
+
     protected bool m_grabVolumeEnabled = true;
     protected Vector3 m_lastPos;
     protected Quaternion m_lastRot;
