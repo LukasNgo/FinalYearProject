@@ -7,8 +7,9 @@ public class FlightController : MonoBehaviour {
     public Rigidbody _rigidbody;
     public OVRInput.Button flightButton;
     private OVRGrabbable ovrGrababble;
-    private float speed = 5;
+    private float speed = 0.1f;
     private Vector3 refVelocity = Vector3.zero;
+    public OVRPlayerController _ovrPlayerController;
 
     private void Start () {
         ovrGrababble = GetComponent<OVRGrabbable>();
@@ -23,8 +24,9 @@ public class FlightController : MonoBehaviour {
         {
             if (ovrGrababble.isGrabbed && OVRInput.Get(OVRInput.Touch.PrimaryIndexTrigger, ovrGrababble.grabbedBy.GetController()))
             {
+                _ovrPlayerController.GravityModifier = 0.0f;
                 float speedMultiplier = OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, ovrGrababble.grabbedBy.GetController());
-                _rigidbody.AddForce(transform.forward * speed * speedMultiplier, ForceMode.Acceleration);
+                _rigidbody.AddForce(transform.forward * speed * speedMultiplier, ForceMode.Impulse);
             }
             if (ovrGrababble.isGrabbed && !OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger, ovrGrababble.grabbedBy.GetController()))
             {
@@ -37,7 +39,8 @@ public class FlightController : MonoBehaviour {
         {
             if (ovrGrababble.isGrabbed && OVRInput.Get(flightButton, ovrGrababble.grabbedBy.GetController()))
             {
-                _rigidbody.AddForce(transform.forward * speed, ForceMode.Acceleration);
+                _ovrPlayerController.GravityModifier = 0.0f;
+                _rigidbody.AddForce(transform.forward * speed, ForceMode.Impulse);
             }
             if (ovrGrababble.isGrabbed && OVRInput.GetUp(flightButton, ovrGrababble.grabbedBy.GetController()))
             {
