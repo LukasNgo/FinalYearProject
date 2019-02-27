@@ -15,9 +15,6 @@ public class FlightController : MonoBehaviour {
     public float particleEmmisionRate = 75f;
 
     private void Start () {
-        //sync framerate to refresh rate
-        QualitySettings.vSyncCount = 1;
-
         ovrGrababble = GetComponent<OVRGrabbable>();
         _particleFX = GetComponentInChildren<ParticleSystem>();
         _emmisionModule = _particleFX.emission;
@@ -25,12 +22,6 @@ public class FlightController : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        //prevent falling through the ground
-        if (_rigidbody.transform.position.y < 0f)
-        {
-            _rigidbody.MovePosition(new Vector3(_rigidbody.transform.position.x, 0f, _rigidbody.transform.position.z));
-        }
-
         //limit maximum speed
         if (_rigidbody.velocity.magnitude > maxSpeed)
         {
