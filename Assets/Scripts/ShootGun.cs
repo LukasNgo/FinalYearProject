@@ -7,6 +7,7 @@ public class ShootGun : MonoBehaviour {
     private SimpleShoot simpleShoot;
     private OVRGrabbable ovrGrababble;
     public OVRInput.Button shootingButton;
+    public AudioClip gunshot;
 
 	// Use this for initialization
 	void Start () {
@@ -18,6 +19,8 @@ public class ShootGun : MonoBehaviour {
 	void Update () {
         if (ovrGrababble.isGrabbed && OVRInput.GetDown(shootingButton, ovrGrababble.grabbedBy.GetController()))
         {
+            GetComponent<AudioSource>().PlayOneShot(gunshot);
+            VibrationManager.singleton.TriggerVibration(gunshot, ovrGrababble.grabbedBy.GetController());
             simpleShoot.TriggerShoot();
         }
 	}

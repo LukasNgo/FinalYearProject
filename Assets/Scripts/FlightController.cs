@@ -13,6 +13,7 @@ public class FlightController : MonoBehaviour {
     private ParticleSystem.EmissionModule _emmisionModule;
     public float maxSpeed = 10f;
     public float particleEmmisionRate = 75f;
+    public AudioClip thrusterSound;
 
     private void Start () {
         ovrGrababble = GetComponent<OVRGrabbable>();
@@ -41,6 +42,16 @@ public class FlightController : MonoBehaviour {
                 GetComponent<Rigidbody>().AddForce(transform.up * speed * speedMultiplier, ForceMode.Impulse);
 
                 _emmisionModule.rateOverTime = speedMultiplier * particleEmmisionRate;
+
+                if (speedMultiplier == 1 && !GetComponent<AudioSource>().isPlaying)
+                {
+                    GetComponent<AudioSource>().PlayOneShot(thrusterSound);
+                    VibrationManager.singleton.TriggerVibration(thrusterSound, ovrGrababble.grabbedBy.GetController());
+                }
+                if (speedMultiplier < 1 && GetComponent<AudioSource>().isPlaying)
+                {
+                    GetComponent<AudioSource>().Stop();
+                }
 
                 //if (speedMultiplier == 0)
                 //{
