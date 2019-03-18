@@ -42,29 +42,6 @@ public class FlightController : MonoBehaviour {
                 GetComponent<Rigidbody>().AddForce(transform.up * speed * speedMultiplier, ForceMode.Impulse);
 
                 _emmisionModule.rateOverTime = speedMultiplier * particleEmmisionRate;
-
-                if (speedMultiplier == 1 && !GetComponent<AudioSource>().isPlaying)
-                {
-                    GetComponent<AudioSource>().PlayOneShot(thrusterSound);
-                    VibrationManager.singleton.TriggerVibration(thrusterSound, ovrGrababble.grabbedBy.GetController());
-                }
-                if (speedMultiplier < 1 && GetComponent<AudioSource>().isPlaying)
-                {
-                    GetComponent<AudioSource>().Stop();
-                }
-
-                //if (speedMultiplier == 0)
-                //{
-                //    _ovrPlayerController.GravityModifier = 0.01f;
-                //}
-                //if (speedMultiplier > 0 && speedMultiplier < 0.5f)
-                //{
-                //    _ovrPlayerController.GravityModifier = 0.05f;
-                //}
-                //if (speedMultiplier > 0.5f)
-                //{
-                //    _ovrPlayerController.GravityModifier = 0;
-                //}
             }
             if (ovrGrababble.isGrabbed && !OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger, ovrGrababble.grabbedBy.GetController()))
             {
@@ -77,7 +54,6 @@ public class FlightController : MonoBehaviour {
         {
             if (ovrGrababble.isGrabbed && OVRInput.Get(flightButton, ovrGrababble.grabbedBy.GetController()))
             {
-                //_ovrPlayerController.GravityModifier = 0.0f;
                 _rigidbody.AddForce(transform.forward * speed, ForceMode.Impulse);
             }
             if (ovrGrababble.isGrabbed && OVRInput.GetUp(flightButton, ovrGrababble.grabbedBy.GetController()))
@@ -90,11 +66,22 @@ public class FlightController : MonoBehaviour {
         if (ovrGrababble.isGrabbed && OVRInput.GetDown(flightButton,ovrGrababble.grabbedBy.GetController()))
         {
             _particleFX.Play();
+
+            if (!GetComponent<AudioSource>().isPlaying)
+            {
+                GetComponent<AudioSource>().PlayOneShot(thrusterSound);
+                VibrationManager.singleton.TriggerVibration(thrusterSound, ovrGrababble.grabbedBy.GetController());
+            }
         }
 
         if (ovrGrababble.isGrabbed && OVRInput.GetUp(flightButton, ovrGrababble.grabbedBy.GetController()))
         {
             _particleFX.Stop();
+
+            if (GetComponent<AudioSource>().isPlaying)
+            {
+                GetComponent<AudioSource>().Stop();
+            }
         }
 
     }
