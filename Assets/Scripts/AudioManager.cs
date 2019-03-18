@@ -41,8 +41,6 @@ public class AudioManager : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        Debug.Log("player velocity magnitude = " + player.velocity.magnitude);
-
         if (player.velocity.magnitude < 1)
         {
             m_windSound.source.volume = 0.05f;

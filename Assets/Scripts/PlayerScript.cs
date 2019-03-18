@@ -7,6 +7,8 @@ public class PlayerScript : MonoBehaviour {
     private Rigidbody _rb;
     private CharacterController _charController;
 
+    public float rotationSpeed = 3.0f;
+
     private void Start()
     {
         //sync framerate to refresh rate
@@ -24,11 +26,11 @@ public class PlayerScript : MonoBehaviour {
             _rb.MovePosition(new Vector3(_rb.transform.position.x, 0f, _rb.transform.position.z));
         }
 
-        //if (_charController.isGrounded)
-        //{
-        //    _rb.useGravity = false;
-        //}
-        //else
-        //    _rb.useGravity = true;
+        //player rotation using right thumbstick
+        if (Input.GetAxis("Oculus_CrossPlatform_SecondaryThumbstickHorizontal") != 0)
+        {
+            gameObject.transform.Rotate(0.0f, Input.GetAxis("Oculus_CrossPlatform_SecondaryThumbstickHorizontal") * rotationSpeed, 0.0f);
+        }
+
     }
 }

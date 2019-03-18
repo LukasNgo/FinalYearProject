@@ -1487,7 +1487,7 @@ Prefab:
         type: 2}
       propertyPath: _ovrPlayerController
       value: 
-      objectReference: {fileID: 254742564}
+      objectReference: {fileID: 0}
     - target: {fileID: 54397606678639536, guid: 6fed056068d8d0d4fa3ca77772c32706,
         type: 2}
       propertyPath: m_UseGravity
@@ -2010,31 +2010,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 100008, guid: ce816f2e6abb0504092c23ed9b970dfd,
     type: 2}
   m_PrefabInternal: {fileID: 2015589207}
---- !u!114 &254742564 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 11400010, guid: ce816f2e6abb0504092c23ed9b970dfd,
-    type: 2}
-  m_PrefabInternal: {fileID: 2015589207}
-  m_Script: {fileID: 11500000, guid: 0950df82e7936c84983497630bde5b54, type: 3}
---- !u!114 &254742566
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 254742560}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf162022e230bb745ab2ec48cd357f9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CameraRig: {fileID: 1607891227}
-  CurrentDistance: 0
-  EnableFadeout: 0
-  EnableCollision: 1
-  DynamicHeight: 1
-  MaxFade: 1
-  FadeMinDistance: 0.25
-  FadeMaxDistance: 0.35
 --- !u!54 &254742567
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2061,6 +2036,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90b7949c6282b8c4092e24d4296686b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotationSpeed: 3
 --- !u!136 &254742569
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -9853,12 +9829,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400008, guid: ce816f2e6abb0504092c23ed9b970dfd,
     type: 2}
   m_PrefabInternal: {fileID: 2015589207}
---- !u!114 &1607891227 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 11400020, guid: ce816f2e6abb0504092c23ed9b970dfd,
-    type: 2}
-  m_PrefabInternal: {fileID: 2015589207}
-  m_Script: {fileID: 11500000, guid: df9f338034892c44ebb62d97894772f1, type: 3}
 --- !u!1 &1613061384 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 146522, guid: 3e758f09cb4d777459433143fc3c7892,
@@ -10500,7 +10470,7 @@ Prefab:
         type: 2}
       propertyPath: _ovrPlayerController
       value: 
-      objectReference: {fileID: 254742564}
+      objectReference: {fileID: 0}
     - target: {fileID: 54397606678639536, guid: 6fed056068d8d0d4fa3ca77772c32706,
         type: 2}
       propertyPath: m_UseGravity
@@ -12322,7 +12292,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11462408, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 2}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 14300000, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 2}
       propertyPath: m_Center.x
@@ -12336,7 +12306,15 @@ Prefab:
       propertyPath: useFixedUpdateForTracking
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 11493974, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 11400010, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 2}
+    - {fileID: 14300000, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 2}
+    - {fileID: 11462408, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 2}
+    - {fileID: 11493974, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1001 &2026272060
