@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class FlightController : MonoBehaviour {
 
-    public Rigidbody _rigidbody;
+    public GameObject playerObject;
+    private Rigidbody _rigidbody;
     public OVRInput.Button flightButton;
     private OVRGrabbable ovrGrababble;
     private float speed = 0.1f;
@@ -14,11 +15,15 @@ public class FlightController : MonoBehaviour {
     public float maxSpeed = 10f;
     public float particleEmmisionRate = 75f;
     public AudioClip thrusterSound;
+    private PlayerScript _playerScript;
+
 
     private void Start () {
+        _rigidbody = playerObject.GetComponent<Rigidbody>();
         ovrGrababble = GetComponent<OVRGrabbable>();
         _particleFX = GetComponentInChildren<ParticleSystem>();
         _emmisionModule = _particleFX.emission;
+        _playerScript = playerObject.GetComponent<PlayerScript>();
     }
 
     private void FixedUpdate()
@@ -38,9 +43,18 @@ public class FlightController : MonoBehaviour {
             {
                 //0...1
                 float speedMultiplier = OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, ovrGrababble.grabbedBy.GetController());
-                _rigidbody.AddForce(transform.up * speed * speedMultiplier, ForceMode.Impulse);
-                GetComponent<Rigidbody>().AddForce(transform.up * speed * speedMultiplier, ForceMode.Impulse);
 
+                if (!_playerScript.GetFlightType())
+                {
+                    _rigidbody.AddForce(transform.up * speed * speedMultiplier, ForceMode.Impulse);
+                    GetComponent<Rigidbody>().AddForce(transform.up * speed * speedMultiplier, ForceMode.Impulse);
+                }
+                else
+                {
+                    _rigidbody.AddForce(transform.forward * speed * speedMultiplier, ForceMode.Impulse);
+                    GetComponent<Rigidbody>().AddForce(transform.forward * speed * speedMultiplier, ForceMode.Impulse);
+                }
+                
                 _emmisionModule.rateOverTime = speedMultiplier * particleEmmisionRate;
             }
             if (ovrGrababble.isGrabbed && !OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger, ovrGrababble.grabbedBy.GetController()))
@@ -82,6 +96,15 @@ public class FlightController : MonoBehaviour {
             {
                 GetComponent<AudioSource>().Stop();
             }
+        }
+
+        if (ovrGrababble.isGrabbed)
+        {
+            gameObject.GetComponent<MeshRenderer>().enabled = false;
+        }
+        else
+        {
+            gameObject.GetComponent<MeshRenderer>().enabled = true;
         }
 
     }
