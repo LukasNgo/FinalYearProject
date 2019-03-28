@@ -30,4 +30,16 @@ public class VibrationManager : MonoBehaviour {
             OVRHaptics.RightChannel.Preempt(clip);
         }
     }
+
+    public void StopVibration(OVRInput.Controller controller)
+    {
+        if (controller == OVRInput.Controller.LTouch)
+        {
+            OVRHaptics.LeftChannel.Clear();
+        }
+        else if (controller == OVRInput.Controller.RTouch)
+        {
+            OVRHaptics.RightChannel.Clear();
+        }
+    }
 }

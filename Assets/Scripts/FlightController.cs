@@ -96,6 +96,8 @@ public class FlightController : MonoBehaviour {
             {
                 GetComponent<AudioSource>().Stop();
             }
+
+            VibrationManager.singleton.StopVibration(ovrGrababble.grabbedBy.GetController());
         }
 
         if (ovrGrababble.isGrabbed)

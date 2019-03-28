@@ -7,6 +7,8 @@ public class PlayerScript : MonoBehaviour {
     private Rigidbody _rb;
     public GameObject Thruster01;
     public GameObject Thruster02;
+    public GameObject LeftHand;
+    public GameObject RightHand;
     private float posYdifference;
     private OVRGrabbable ovrGrababble01;
     private OVRGrabbable ovrGrababble02;
@@ -30,7 +32,7 @@ public class PlayerScript : MonoBehaviour {
 
     private void Update()
     {
-        posYdifference = Thruster01.transform.position.y - Thruster02.transform.position.y;
+        posYdifference = LeftHand.transform.position.y - RightHand.transform.position.y;
     }
 
     private void FixedUpdate()
