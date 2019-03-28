@@ -27,7 +27,7 @@ public class WristUIController : MonoBehaviour {
 	void Update () {
         if (OVRInput.GetDown(UIButton))
         {
-            Debug.Log(UIButton + "button pressed");
+            //Debug.Log(UIButton + "button pressed");
             WristUIAnimator.SetTrigger("WristUITrigger");
         }
         if (LeftHand.transform.localEulerAngles.z < 85 && LeftHand.transform.localEulerAngles.z > 60 && !_isRight)
@@ -53,7 +53,7 @@ public class WristUIController : MonoBehaviour {
         }
         if (OVRInput.GetDown(FlightButton))
         {
-            Debug.Log(FlightButton + "button pressed");
+            //Debug.Log(FlightButton + "button pressed");
             AudioManager.singleton.Play("ChangeFlight");
             Rocket1Animator.SetTrigger("RotateRocket");
             Rocket2Animator.SetTrigger("RotateRocket");
