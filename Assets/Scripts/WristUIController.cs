@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class WristUIController : MonoBehaviour {
 
@@ -14,13 +16,15 @@ public class WristUIController : MonoBehaviour {
     public Animator Rocket3Animator;
     public Animator Rocket4Animator;
     public Transform LeftHand;
-    private bool _isLeft = false;
-    private bool _isRight = false;
-    private bool _isCentre = false;
     private PlayerScript _playerScript;
+    public Transform UICanvas;
+    public TextMeshProUGUI UIText;
+    public Camera mainCamera;
 
     void Start () {
-        WristUIAnimator = GetComponentInChildren<Animator>();
+        //doesnt work anymore
+        //WristUIAnimator = GetComponentInChildren<Animator>();
+
         _playerScript = playerObject.GetComponent<PlayerScript>();
     }
 	
@@ -28,29 +32,11 @@ public class WristUIController : MonoBehaviour {
         if (OVRInput.GetDown(UIButton))
         {
             //Debug.Log(UIButton + "button pressed");
-            WristUIAnimator.SetTrigger("WristUITrigger");
+
+            //doesnt work anymore
+            //WristUIAnimator.SetTrigger("WristUITrigger");
         }
-        if (LeftHand.transform.localEulerAngles.z < 85 && LeftHand.transform.localEulerAngles.z > 60 && !_isRight)
-        {
-            _isLeft = false;
-            _isCentre = false;
-            WristUIAnimator.SetTrigger("WristUIRight");
-            _isRight = true;
-        }
-        if (LeftHand.transform.localEulerAngles.z < 110 && LeftHand.transform.localEulerAngles.z > 85 && !_isCentre)
-        {
-            _isLeft = false;
-            _isRight = true;
-            WristUIAnimator.SetTrigger("WristUICentre");
-            _isCentre = true;
-        }
-        if (LeftHand.transform.localEulerAngles.z < 135 && LeftHand.transform.localEulerAngles.z > 110 && !_isLeft)
-        {
-            _isRight = false;
-            _isCentre = false;
-            WristUIAnimator.SetTrigger("WristUILeft");
-            _isLeft = true;
-        }
+
         if (OVRInput.GetDown(FlightButton))
         {
             //Debug.Log(FlightButton + "button pressed");
@@ -61,5 +47,19 @@ public class WristUIController : MonoBehaviour {
             Rocket4Animator.SetTrigger("RotateRocket");
             _playerScript.ChangeFlightType();
         }
+
+        int m_playerSpeed = (int)playerObject.GetComponent<Rigidbody>().velocity.magnitude;
+        int m_altitude = (int)playerObject.transform.position.y;
+        string flightModeString;
+        if (playerObject.GetComponent<PlayerScript>().GetFlightType())
+        {
+            flightModeString = "forward";
+        }
+        else
+        {
+            flightModeString = "up";
+        }
+        UICanvas.LookAt(transform.position + mainCamera.transform.rotation * Vector3.forward, mainCamera.transform.rotation * Vector3.up);
+        UIText.text = "speed: " + m_playerSpeed + "\n" + "altitude: " + m_altitude + "\n" + "flight type: " + flightModeString;
     }
 }

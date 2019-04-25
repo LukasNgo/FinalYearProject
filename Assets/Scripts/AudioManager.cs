@@ -34,11 +34,14 @@ public class AudioManager : MonoBehaviour {
             s.source.loop = s.loop;
         }
 	}
+
+    //wind sound effect
     private void Start()
     {
         WindEffect();
     }
 
+    //based on player's speed change the volume and pitch
     private void FixedUpdate()
     {
         if (player.velocity.magnitude < 1)

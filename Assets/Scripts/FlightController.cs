@@ -64,7 +64,7 @@ public class FlightController : MonoBehaviour {
 
             }
         }
-        else
+        else //any other button except primary index trigger
         {
             if (ovrGrababble.isGrabbed && OVRInput.Get(flightButton, ovrGrababble.grabbedBy.GetController()))
             {
@@ -77,6 +77,7 @@ public class FlightController : MonoBehaviour {
             }
         }
 
+        //play particles, sound and vibratoin when flying
         if (ovrGrababble.isGrabbed && OVRInput.GetDown(flightButton,ovrGrababble.grabbedBy.GetController()))
         {
             _particleFX.Play();
@@ -88,6 +89,7 @@ public class FlightController : MonoBehaviour {
             }
         }
 
+        //stop particles, sound and vibrations when not flying
         if (ovrGrababble.isGrabbed && OVRInput.GetUp(flightButton, ovrGrababble.grabbedBy.GetController()))
         {
             _particleFX.Stop();
@@ -100,6 +102,7 @@ public class FlightController : MonoBehaviour {
             VibrationManager.singleton.StopVibration(ovrGrababble.grabbedBy.GetController());
         }
 
+        //disable thruster mesh when grabbed
         if (ovrGrababble.isGrabbed)
         {
             gameObject.GetComponent<MeshRenderer>().enabled = false;

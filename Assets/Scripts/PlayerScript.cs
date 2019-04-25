@@ -30,6 +30,7 @@ public class PlayerScript : MonoBehaviour {
         ovrGrababble02 = Thruster02.GetComponent<OVRGrabbable>();
     }
 
+    //calculate difference between left and right controller on Y axis
     private void Update()
     {
         posYdifference = LeftHand.transform.position.y - RightHand.transform.position.y;
@@ -49,15 +50,27 @@ public class PlayerScript : MonoBehaviour {
             gameObject.transform.Rotate(0.0f, Input.GetAxis("Oculus_CrossPlatform_SecondaryThumbstickHorizontal") * rotationSpeed, 0.0f);
         }
 
+        //player rotation using hand position
         if (ovrGrababble01.isGrabbed && ovrGrababble02.isGrabbed)
         {
             gameObject.transform.Rotate(0.0f, posYdifference * rotationSpeed, 0.0f);
         }
     }
 
+    //change flight type between forward and up, also disable gravity if flying forward.
     public void ChangeFlightType()
     {
         _isFlyingForward = !_isFlyingForward;
+
+        if (_isFlyingForward)
+        {
+            _rb.useGravity = false;
+        }
+
+        if (!_isFlyingForward)
+        {
+            _rb.useGravity = true;
+        }
     }
 
     public bool GetFlightType()
