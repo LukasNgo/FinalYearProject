@@ -12,13 +12,11 @@ public class PlayerScript : MonoBehaviour {
     private float posYdifference;
     private OVRGrabbable ovrGrababble01;
     private OVRGrabbable ovrGrababble02;
-
+    public float rotationSpeed = 3.0f;
+    private bool _isEquiped = false;
     [SerializeField]
     private bool _isFlyingForward = false;
-
-
-    public float rotationSpeed = 3.0f;
-
+    
     private void Start()
     {
         //sync framerate to refresh rate
@@ -47,7 +45,7 @@ public class PlayerScript : MonoBehaviour {
         //player rotation using right thumbstick
         if (Input.GetAxis("Oculus_CrossPlatform_SecondaryThumbstickHorizontal") != 0)
         {
-            gameObject.transform.Rotate(0.0f, Input.GetAxis("Oculus_CrossPlatform_SecondaryThumbstickHorizontal") * rotationSpeed, 0.0f);
+            gameObject.transform.Rotate(0.0f, Input.GetAxis("Oculus_CrossPlatform_SecondaryThumbstickHorizontal") * 2, 0.0f);
         }
 
         //player rotation using hand position
@@ -55,22 +53,60 @@ public class PlayerScript : MonoBehaviour {
         {
             gameObject.transform.Rotate(0.0f, posYdifference * rotationSpeed, 0.0f);
         }
+
+        //player movement using thumbstick
+        if (Input.GetAxis("Oculus_CrossPlatform_SecondaryThumbstickVertical") != 0)
+        {
+            //_rb.AddForce(transform.forward * Input.GetAxis("Oculus_CrossPlatform_SecondaryThumbstickVertical")/10, ForceMode.Impulse);
+            _rb.velocity = transform.forward * Input.GetAxis("Oculus_CrossPlatform_SecondaryThumbstickVertical") * 2;
+        }
+
+        if (!GetEquipedStatus())
+        {
+            _rb.useGravity = true;
+        }
+
+        if (GetFlightType() && GetEquipedStatus())
+        {
+            _rb.useGravity = false;
+        }
     }
 
     //change flight type between forward and up, also disable gravity if flying forward.
     public void ChangeFlightType()
     {
-        _isFlyingForward = !_isFlyingForward;
-
-        if (_isFlyingForward)
+        if (ovrGrababble01.isGrabbed || ovrGrababble02.isGrabbed)
         {
-            _rb.useGravity = false;
-        }
+            _isFlyingForward = !_isFlyingForward;
 
-        if (!_isFlyingForward)
+            if (_isFlyingForward)
+            {
+                _rb.useGravity = false;
+            }
+
+            if (!_isFlyingForward)
+            {
+                _rb.useGravity = true;
+            }
+        }
+        else
         {
             _rb.useGravity = true;
         }
+    }
+    
+    public bool GetEquipedStatus()
+    {
+        if (ovrGrababble01.isGrabbed || ovrGrababble02.isGrabbed)
+        {
+            _isEquiped = true;
+        }
+        else
+        {
+            _isEquiped = false;
+        }
+
+        return _isEquiped;
     }
 
     public bool GetFlightType()

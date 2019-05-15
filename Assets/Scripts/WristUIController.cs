@@ -37,7 +37,7 @@ public class WristUIController : MonoBehaviour {
             //WristUIAnimator.SetTrigger("WristUITrigger");
         }
 
-        if (OVRInput.GetDown(FlightButton))
+        if (OVRInput.GetDown(FlightButton) && _playerScript.GetEquipedStatus())
         {
             //Debug.Log(FlightButton + "button pressed");
             AudioManager.singleton.Play("ChangeFlight");
