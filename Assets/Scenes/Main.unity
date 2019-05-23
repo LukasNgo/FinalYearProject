@@ -1912,6 +1912,16 @@ Prefab:
       propertyPath: m_Name
       value: Thruster (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 114297521636115280, guid: 6fed056068d8d0d4fa3ca77772c32706,
+        type: 2}
+      propertyPath: _particleFX1
+      value: 
+      objectReference: {fileID: 1755169372}
+    - target: {fileID: 114297521636115280, guid: 6fed056068d8d0d4fa3ca77772c32706,
+        type: 2}
+      propertyPath: _particleFX2
+      value: 
+      objectReference: {fileID: 1928056195}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6fed056068d8d0d4fa3ca77772c32706, type: 2}
   m_IsPrefabAsset: 0
@@ -2573,7 +2583,7 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.2
-  m_Height: 1.7
+  m_Height: 1.5
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &258826368
@@ -6381,6 +6391,16 @@ Prefab:
       propertyPath: playerObject
       value: 
       objectReference: {fileID: 254742560}
+    - target: {fileID: 114297521636115280, guid: 6fed056068d8d0d4fa3ca77772c32706,
+        type: 2}
+      propertyPath: _particleFX1
+      value: 
+      objectReference: {fileID: 1295057837}
+    - target: {fileID: 114297521636115280, guid: 6fed056068d8d0d4fa3ca77772c32706,
+        type: 2}
+      propertyPath: _particleFX2
+      value: 
+      objectReference: {fileID: 1177502724}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6fed056068d8d0d4fa3ca77772c32706, type: 2}
   m_IsPrefabAsset: 0
@@ -7176,37 +7196,6 @@ Transform:
   m_Father: {fileID: 2076676482}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!84 &843041904
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 512
-  m_Height: 256
-  m_AntiAliasing: 1
-  m_DepthFormat: 0
-  m_ColorFormat: 11
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &852450469 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 137662, guid: 21cb504748591f445bfe40ac674be242,
@@ -9860,7 +9849,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1135701188}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f01d29d88278f45458d99e6b5199e920, type: 3}
   m_Name: 
@@ -9869,7 +9858,7 @@ MonoBehaviour:
   overrideColor: 1
   overridingColor: {r: 0.9999, g: 0.70124346, b: 0.0907645, a: 1}
   useShadow: 1
-  shadowMapRenderTexture: {fileID: 843041904}
+  shadowMapRenderTexture: {fileID: 0}
   useCookie: 1
   cookieMapRenderTexture: {fileID: 0}
   enableOutOfPhaseColor: 0
@@ -9877,7 +9866,7 @@ MonoBehaviour:
   outOfPhaseColor: {r: 0, g: 1, b: 1, a: 1}
   storeShadowDataShader: {fileID: 4800000, guid: fff19db2423616b4dbabe995cd97279e,
     type: 3}
-  shadowDataRenderTexture: {fileID: 1966525047}
+  shadowDataRenderTexture: {fileID: 0}
   customDistanceFalloffThreshold: 0.5
   customDistanceFalloffPower: 2
   storeDirectionalSpotLightCookieMapShader: {fileID: 4800000, guid: ffdac5434c39f7545b910c253007c8fc,
@@ -10222,6 +10211,11 @@ Transform:
   m_Father: {fileID: 582846771}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -5.3870997}
+--- !u!198 &1177502724 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 198202778513046626, guid: 6fed056068d8d0d4fa3ca77772c32706,
+    type: 2}
+  m_PrefabInternal: {fileID: 732420192}
 --- !u!95 &1185958118 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 95189343989585550, guid: 6fed056068d8d0d4fa3ca77772c32706,
@@ -10981,6 +10975,11 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 78a8c0fcbd14a3241b17e232c96ef958, type: 3}
+--- !u!198 &1295057837 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 198328595689437252, guid: 6fed056068d8d0d4fa3ca77772c32706,
+    type: 2}
+  m_PrefabInternal: {fileID: 732420192}
 --- !u!1 &1301988641
 GameObject:
   m_ObjectHideFlags: 0
@@ -13433,7 +13432,7 @@ MonoBehaviour:
   m_useSpherecast: 0
   m_preventGrabThroughWalls: 1
   m_objectPullVelocity: 10
-  m_maxGrabDistance: 2
+  m_maxGrabDistance: 4
   m_grabObjectsInLayer: 9
   m_obstructionLayer: -1
   m_player: {fileID: 254742560}
@@ -13784,6 +13783,11 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 73deee65ec709a74aa72f4e27bfc3d35, type: 3}
+--- !u!198 &1755169372 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 198328595689437252, guid: 6fed056068d8d0d4fa3ca77772c32706,
+    type: 2}
+  m_PrefabInternal: {fileID: 177458617}
 --- !u!1001 &1765418833
 Prefab:
   m_ObjectHideFlags: 0
@@ -15521,6 +15525,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 435994, guid: 20af60c63fe2b9840975f2a12385d126,
     type: 2}
   m_PrefabInternal: {fileID: 1925500125}
+--- !u!198 &1928056195 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 198202778513046626, guid: 6fed056068d8d0d4fa3ca77772c32706,
+    type: 2}
+  m_PrefabInternal: {fileID: 177458617}
 --- !u!1001 &1930757030
 Prefab:
   m_ObjectHideFlags: 0
@@ -15686,37 +15695,6 @@ Transform:
   m_Father: {fileID: 1060760257}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -1.0218999, y: -2.0607, z: 166.5164}
---- !u!84 &1966525047
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 32
-  m_Height: 1
-  m_AntiAliasing: 1
-  m_DepthFormat: 0
-  m_ColorFormat: 11
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1001 &1970227198
 Prefab:
   m_ObjectHideFlags: 0
@@ -16128,17 +16106,21 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 2015248, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 2}
       propertyPath: near clip plane
-      value: 0.01
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 20131489337305086, guid: ce816f2e6abb0504092c23ed9b970dfd,
         type: 2}
       propertyPath: near clip plane
-      value: 0.01
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 20504667576486672, guid: ce816f2e6abb0504092c23ed9b970dfd,
         type: 2}
       propertyPath: near clip plane
-      value: 0.01
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 2}
+      propertyPath: enableAdaptiveResolution
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11400010, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 2}
@@ -17056,6 +17038,11 @@ Prefab:
     - target: {fileID: 4400555056051054, guid: 6fae51a9f4170334e8639e8dbfc0a54b, type: 2}
       propertyPath: m_LocalRotation.w
       value: 0.95884395
+      objectReference: {fileID: 0}
+    - target: {fileID: 114956354361317420, guid: 6fae51a9f4170334e8639e8dbfc0a54b,
+        type: 2}
+      propertyPath: m_maxGrabDistance
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6fae51a9f4170334e8639e8dbfc0a54b, type: 2}

@@ -10,8 +10,10 @@ public class FlightController : MonoBehaviour {
     private OVRGrabbable ovrGrababble;
     private float speed = 0.1f;
     public OVRPlayerController _ovrPlayerController;
-    private ParticleSystem _particleFX;
-    private ParticleSystem.EmissionModule _emmisionModule;
+    public ParticleSystem _particleFX1;
+    public ParticleSystem _particleFX2;
+    private ParticleSystem.EmissionModule _emmisionModule1;
+    private ParticleSystem.EmissionModule _emmisionModule2;
     public float maxSpeed = 10f;
     public float particleEmmisionRate = 75f;
     public AudioClip thrusterSound;
@@ -21,8 +23,9 @@ public class FlightController : MonoBehaviour {
     private void Start () {
         _rigidbody = playerObject.GetComponent<Rigidbody>();
         ovrGrababble = GetComponent<OVRGrabbable>();
-        _particleFX = GetComponentInChildren<ParticleSystem>();
-        _emmisionModule = _particleFX.emission;
+        //_particleFX = GetComponentInChildren<ParticleSystem>();
+        _emmisionModule1 = _particleFX1.emission;
+        _emmisionModule2 = _particleFX2.emission;
         _playerScript = playerObject.GetComponent<PlayerScript>();
     }
 
@@ -55,7 +58,8 @@ public class FlightController : MonoBehaviour {
                     GetComponent<Rigidbody>().AddForce(transform.forward * speed * speedMultiplier, ForceMode.Impulse);
                 }
                 
-                _emmisionModule.rateOverTime = speedMultiplier * particleEmmisionRate;
+                _emmisionModule1.rateOverTime = speedMultiplier * particleEmmisionRate;
+                _emmisionModule2.rateOverTime = speedMultiplier * particleEmmisionRate;
             }
             if (ovrGrababble.isGrabbed && !OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger, ovrGrababble.grabbedBy.GetController()))
             {
@@ -80,7 +84,8 @@ public class FlightController : MonoBehaviour {
         //play particles, sound and vibratoin when flying
         if (ovrGrababble.isGrabbed && OVRInput.GetDown(flightButton,ovrGrababble.grabbedBy.GetController()))
         {
-            _particleFX.Play();
+            _particleFX1.Play();
+            _particleFX2.Play();
 
             if (!GetComponent<AudioSource>().isPlaying)
             {
@@ -92,7 +97,8 @@ public class FlightController : MonoBehaviour {
         //stop particles, sound and vibrations when not flying
         if (ovrGrababble.isGrabbed && OVRInput.GetUp(flightButton, ovrGrababble.grabbedBy.GetController()))
         {
-            _particleFX.Stop();
+            _particleFX1.Stop();
+            _particleFX2.Stop();
 
             if (GetComponent<AudioSource>().isPlaying)
             {

@@ -26,6 +26,10 @@ public class PostProcessScript : MonoBehaviour {
         if (PlayerRigidBody.velocity.magnitude > 1)
         {
             m_Vignette.intensity.value = PlayerRigidBody.velocity.magnitude/20f;
+            if (m_Vignette.intensity.value > 0.8f)
+            {
+                m_Vignette.intensity.value = 0.8f;
+            }
         }
         else
         {

@@ -55,11 +55,15 @@ public class PlayerScript : MonoBehaviour {
         }
 
         //player movement using thumbstick
-        if (Input.GetAxis("Oculus_CrossPlatform_SecondaryThumbstickVertical") != 0)
+        if (_rb.velocity.magnitude < 2)
         {
-            //_rb.AddForce(transform.forward * Input.GetAxis("Oculus_CrossPlatform_SecondaryThumbstickVertical")/10, ForceMode.Impulse);
-            _rb.velocity = transform.forward * Input.GetAxis("Oculus_CrossPlatform_SecondaryThumbstickVertical") * 2;
+            if (Input.GetAxis("Oculus_CrossPlatform_SecondaryThumbstickVertical") != 0)
+            {
+                //_rb.AddForce(transform.forward * Input.GetAxis("Oculus_CrossPlatform_SecondaryThumbstickVertical")/10, ForceMode.Impulse);
+                _rb.velocity = transform.forward * Input.GetAxis("Oculus_CrossPlatform_SecondaryThumbstickVertical") * 2;
+            }
         }
+
 
         if (!GetEquipedStatus())
         {
